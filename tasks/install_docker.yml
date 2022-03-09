@@ -1,0 +1,50 @@
+---
+    - name: Updating Apt-Cache
+      apt:
+        update_cache: yes
+        
+    - name: Upgrade the OS (apt-get dist-upgrade)
+      apt:
+        upgrade: dist
+
+    - name: Install Prerequisites
+      apt:
+        pkg:
+        - gnupg
+        - ca-certificates
+        - curl
+        - python3-pip
+        - sudo
+
+    - name: Add Docker GPG apt Key
+      apt_key:
+        url: https://download.docker.com/linux/debian/gpg
+        state: present
+
+    - name: Add Docker Repository
+      apt_repository:
+        repo: deb  https://download.docker.com/linux/debian bullseye stable
+        state: present
+
+    - name: Install Docker
+      apt: 
+        update_cache: yes
+        pkg:
+        - docker-ce
+        - docker-ce-cli
+        - containerd.io
+
+    - name: Create a Docker User
+      user:
+        name: dockeruser
+        password: "{{ lookup('password', 'credentials/password.txt encrypt=md5_crypt') }}"
+        groups:
+        - docker
+        - sudo
+
+    - name: Install Docker Module for Python
+      become_user: dockeruser
+      pip:
+        name: 
+        - docker
+        - docker-compose

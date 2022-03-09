@@ -1,0 +1,46 @@
+---
+    - name: Create a Network for TeamSpeak
+      become_user: dockeruser
+      community.docker.docker_network:
+        name: ts_network
+
+    - name: Deploy Teamspeak 3 Server
+      become_user: dockeruser
+      community.docker.docker_container:
+        name: ts3_server
+        image: teamspeak:latest
+        ports:
+          - "9987:9987/udp"
+          - "10011:10011"
+          - "30033:30033"
+        volumes:
+          - /opt/docker_cfg/ts3_licensekey.dat:/var/ts3server/licensekey.dat
+          - ts3_server:/var/ts3server/
+        networks:
+          - name: ts_network
+        env:
+          TS3SERVER_LICENSE: "accept"
+        restart_policy: unless-stopped
+
+    - name: Add the sinunsbot User
+      ansible.builtin.user:
+        name: sinusbot
+        comment: SinusBot User
+        uid: 1010
+    
+    - name: Deploy SinusBot Container
+      become_user: dockeruser
+      community.docker.docker_container:
+        name: sinusbot
+        image: sinusbot/docker
+        ports:
+          - "8087:8087"
+        env:
+          UID: "1010"
+          GID: "1010"
+        volumes:
+          - sinusbot_scripts:/opt/sinusbot/scripts
+          - sinusbot_data:/opt/sinusbot/data
+        networks:
+          - name: ts_network
+        restart_policy: unless-stopped

@@ -1,0 +1,9 @@
+---
+- hosts: docker
+  become: true
+  tasks:
+    - include_tasks: tasks/pull_volumes.yml
+    - include_tasks: tasks/containers/nginx_proxy_manager.yml
+    - include_tasks: tasks/containers/portainer.yml
+    - include_tasks: tasks/containers/teamspeak.yml
+    - include_tasks: tasks/containers/vaultwarden.yml

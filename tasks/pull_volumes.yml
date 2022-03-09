@@ -1,0 +1,21 @@
+---
+  - name: Check if rsync is installed
+    apt:
+      name: rsync
+      state: present
+
+  - name: Synchronize Docker Volumes
+    ansible.posix.synchronize:
+      mode: pull
+      src: /var/lib/docker/volumes
+      dest: /root/backup/
+      rsync_opts:
+        - "--exclude=backingFsBlockDev"
+      delete: yes
+
+  - name: Synchronize Docker Configs in /opt/
+    ansible.posix.synchronize:
+      mode: pull
+      src: /opt/docker_cfg
+      dest: /root/backup/opt
+      delete: yes

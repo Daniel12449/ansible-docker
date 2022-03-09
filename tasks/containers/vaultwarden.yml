@@ -1,0 +1,16 @@
+---
+    - name: Deploy Vaultwarden
+      become_user: dockeruser
+      community.docker.docker_container:
+        name: vaultwarden
+        image: vaultwarden/server:latest
+        ports:
+          - "8080:80"
+        volumes:
+          - vaultwarden:/data/
+        env:
+          WEBSOCKET_ENABLED: true
+          SIGNUPS_ALLOWED: false
+          LOG_FILE: /data/vaultwarden.log 
+          LOG_LEVEL: error
+        restart_policy: unless-stopped

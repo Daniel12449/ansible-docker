@@ -1,0 +1,15 @@
+---
+    - name: Deploy Vaultwarden
+      become_user: dockeruser
+      community.docker.docker_container:
+        name: vaultwarden
+        image: vaultwarden/server:latest
+        ports:
+          - "53:53"
+          - "53:53/udp"
+          - "8081:80"
+          - "853:853"
+        volumes:
+          - adguard_conf:/opt/adguardhome/conf
+          - adguard_data:/opt/adguardhome/work
+        restart_policy: unless-stopped
