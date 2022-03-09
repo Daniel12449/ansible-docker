@@ -9,8 +9,8 @@
         volumes:
           - vaultwarden:/data/
         env:
-          WEBSOCKET_ENABLED: true
-          SIGNUPS_ALLOWED: false
-          LOG_FILE: /data/vaultwarden.log 
-          LOG_LEVEL: error
+          WEBSOCKET_ENABLED: "true"
+          SIGNUPS_ALLOWED: "false"
+          LOG_FILE: "/data/vaultwarden.log"
+          LOG_LEVEL: "error"
         restart_policy: unless-stopped
