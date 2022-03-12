@@ -2,7 +2,17 @@
 - hosts: docker
   become: true
   tasks:
+
+    - name: Updating Apt-Cache
+      apt:
+        update_cache: yes
+        
+    - name: Upgrade the OS (apt-get dist-upgrade)
+      apt:
+        upgrade: dist
+
     - include_tasks: tasks/pull_volumes.yml
+    - include_tasks: tasks/backup_vaultwarden.yml
     - include_tasks: tasks/containers/nginx_proxy_manager.yml
     - include_tasks: tasks/containers/portainer.yml
     - include_tasks: tasks/containers/teamspeak.yml
