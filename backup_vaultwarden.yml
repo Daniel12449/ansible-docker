@@ -11,12 +11,13 @@
     - name: Remove Live Backups in Backup Directory
       ansible.builtin.file:
         file:
-        path: "/root/backup/volumes/vaultwarden/_data/{{ item }}"
-        state: absent
+          path: "/root/backup/volumes/vaultwarden/_data/{{ item }}"
+          state: absent
         with_items:
           - db.sqlite3
           - db.sqlite3-shm
           - db.sqlite3-wal
+        delegate_to: 127.0.0.1
     
     - name: Check if Old DB Dump exists
       ansible.builtin.file:
