@@ -6,12 +6,12 @@
   
   - name: Remove Live Backups in Backup Directory
     file:
-      path: '{{ item }}'
+      path: "{{ item }}"
       state: absent
     with_items:
-      - "{{ backup_path }}"/volumes/vaultwarden/_data/db.sqlite3
-      - "{{ backup_path }}"/volumes/vaultwarden/_data/db.sqlite3-shm
-      - "{{ backup_path }}"/volumes/vaultwarden/_data/db.sqlite3-wal
+      - "{{ backup_path }}/volumes/vaultwarden/_data/db.sqlite3"
+      - "{{ backup_path }}/volumes/vaultwarden/_data/db.sqlite3-shm"
+      - "{{ backup_path }}/volumes/vaultwarden/_data/db.sqlite3-wal"
     delegate_to: 127.0.0.1
     
   - name: Check if Old DB Dump exists
@@ -28,7 +28,7 @@
     ansible.posix.synchronize:
       mode: pull
       src: /tmp/db.sqlite3
-      dest: "{{ backup_path }}"/volumes/vaultwarden/_data/
+      dest: "{{ backup_path }}/volumes/vaultwarden/_data/"
       delete: yes
 
   - name: Remove Temp DB Dump

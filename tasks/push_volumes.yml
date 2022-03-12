@@ -8,11 +8,11 @@
     ansible.posix.synchronize:
       mode: push
       dest: /var/lib/docker
-      src: "{{ backup_path }}"/volumes
+      src: "{{ backup_path }}/volumes"
       
   - name: Synchronize Docker Configs in /opt/
     ansible.posix.synchronize:
       mode: push
       dest: /opt
-      src: "{{ backup_path }}"/opt/docker_cfg
+      src: "{{ backup_path }}/opt/docker_cfg"
 
