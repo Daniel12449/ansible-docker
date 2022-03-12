@@ -8,7 +8,7 @@
     ansible.posix.synchronize:
       mode: pull
       src: /var/lib/docker/volumes
-      dest: /root/backup/
+      dest: "{{ backup_path }}"
       rsync_opts:
         - "--exclude=backingFsBlockDev"
       delete: yes
@@ -17,5 +17,5 @@
     ansible.posix.synchronize:
       mode: pull
       src: /opt/docker_cfg
-      dest: /root/backup/opt
+      dest: "{{ backup_path }}"/opt
       delete: yes

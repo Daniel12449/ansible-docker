@@ -1,0 +1,16 @@
+---
+  - name: Install UFW
+    apt:
+      name: ufw
+      state: present
+  
+  - name: UFW - Allow OpenSSH
+    community.general.ufw:
+    rule: allow
+    name: OpenSSH
+#    src: "{{ ansible_controller_ip }}"
+
+  - name: Enable UFW and Deny Default
+    community.general.ufw:
+      state: enabled
+      policy: deny

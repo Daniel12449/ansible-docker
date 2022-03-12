@@ -1,0 +1,2 @@
+ansible_controller_ip: 10.10.10.5
+backup_path: /root/backup
