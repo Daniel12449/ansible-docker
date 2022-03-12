@@ -26,7 +26,7 @@
     - name: Pull DB Dump
       ansible.posix.synchronize:
         mode: pull
-        src: /tmp/db.sqlite
+        src: /tmp/db.sqlite3
         dest: /root/backup/volumes/vaultwarden/_data/
         delete: yes
   
