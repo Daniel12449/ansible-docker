@@ -16,7 +16,7 @@
     - name: Vacuum Live DB to Backup DB
       ansible.builtin.shell: sqlite3 db.sqlite3 "VACUUM INTO '/tmp/db.sqlite3'"
       args:
-        chdir: /root/backup/volumes/vaultwarden/_data/
+        chdir: /var/lib/docker/volumes/vaultwarden/_data/
 
     - name: Pull DB Dump
       ansible.posix.synchronize:
