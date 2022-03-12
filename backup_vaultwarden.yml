@@ -1,0 +1,30 @@
+---
+- hosts: docker
+  become: true
+  
+  - name: Check if sqlite3 is installed
+    apt:
+      name: sqlite3
+      state: present
+
+  - name: Remove Live Backups in Backup Directory
+    ansible.builtin.file:
+      path: /root/backup/volumes/vaultwarden/_data/db.sqlite3*
+      state: absent
+
+  - name: Vacuum Live DB to Backup DB
+    ansible.builtin.shell: sqlite3 db.sqlite3 "VACUUM INTO '/tmp/db.sqlite3'"
+    args:
+      chdir: /root/backup/volumes/vaultwarden/_data/
+
+  - name: Pull DB Dump
+    ansible.posix.synchronize:
+      mode: pull
+      src: /tmp/db.sqlite
+      dest: /root/backup/volumes/vaultwarden/_data/
+      delete: yes
+  
+  - name: Remove Temp DB Dump
+    ansible.builtin.file:
+      path: /tmp/db.sqlite3
+      state: absent
