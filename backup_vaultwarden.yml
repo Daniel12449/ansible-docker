@@ -12,6 +12,11 @@
       ansible.builtin.file:
         path: /root/backup/volumes/vaultwarden/_data/db.sqlite3*
         state: absent
+    
+    - name: Check if Old DB Dump exists
+      ansible.builtin.file:
+        path: /tmp/db.sqlite3
+        state: absent
 
     - name: Vacuum Live DB to Backup DB
       ansible.builtin.shell: sqlite3 db.sqlite3 "VACUUM INTO '/tmp/db.sqlite3'"
