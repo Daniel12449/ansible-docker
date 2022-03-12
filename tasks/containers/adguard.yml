@@ -7,7 +7,7 @@
         ports:
           - "53:53"
           - "53:53/udp"
-          - "8081:80"
+          - "127.0.0.1:8081:80"
           - "853:853"
         volumes:
           - adguard_conf:/opt/adguardhome/conf
