@@ -17,5 +17,5 @@
     ansible.posix.synchronize:
       mode: pull
       src: /opt/docker_cfg
-      dest: "{{ backup_path }}/opt"
+      dest: "{{ backup_path }}"
       delete: yes
