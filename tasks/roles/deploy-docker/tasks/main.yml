@@ -1,0 +1,25 @@
+---
+- hosts: docker
+  become: true
+
+  tasks:
+      - include_tasks: adguard.yml
+        tags:
+          - setup
+          - restore
+      - include_tasks: nginx_proxy_manager.yml
+        tags:
+          - setup
+          - restore
+      - include_tasks: portainer.yml
+        tags:
+          - setup
+          - restore
+      - include_tasks: teamspeak.yml
+        tags:
+          - setup
+          - restore
+      - include_tasks: vaultwarden.yml
+        tags:
+          - setup
+          - restore

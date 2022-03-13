@@ -1,0 +1,11 @@
+---
+- hosts: docker
+  become: true
+
+  vars_files:
+    - vars.yml
+    
+  roles:
+    - setup
+    - deploy-docker
+    - backup
