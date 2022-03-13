@@ -5,7 +5,7 @@
       - unattended-upgrades
       - apt-listchanges
 
-  - name: Copy a new "ntp.conf" file into place, backing up the original if it differs from the copied version
+  - name: Copy new config into place
     ansible.builtin.copy:
       src: "{{ role_path }}/files/50unattended-upgrades"
       dest: /etc/apt/apt.conf.d/50unattended-upgrades
