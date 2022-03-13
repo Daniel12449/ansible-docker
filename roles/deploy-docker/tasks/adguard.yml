@@ -1,9 +1,9 @@
 ---
-    - name: Deploy Vaultwarden
+    - name: Deploy Adguard
       become_user: dockeruser
       community.docker.docker_container:
-        name: vaultwarden
-        image: vaultwarden/server:latest
+        name: adguard
+        image: adguard/adguardhome
         ports:
           - "53:53"
           - "53:53/udp"
