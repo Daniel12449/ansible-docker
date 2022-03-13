@@ -7,7 +7,7 @@
         ports:
           - "80:80"
           - "443:443"
-          - "81:21"
+          - "81:81"
         volumes:
           - npm_data:/data
           - npm_letsencrypt:/etc/letsencrypt

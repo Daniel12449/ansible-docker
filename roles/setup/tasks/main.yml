@@ -13,3 +13,7 @@
     tags:
       - never
       - restore
+  - import_tasks: "{{ role_path }}/tasks/unattended_upgrades.yml"
+    tags:
+      - never
+      - restore

@@ -1,0 +1,21 @@
+---
+  - name: Install Unattended-Upgrades and Dependencies
+    apt:
+      pkg:
+      - unattended-upgrades
+      - apt-listchanges
+
+  - name: Copy a new "ntp.conf" file into place, backing up the original if it differs from the copied version
+    ansible.builtin.copy:
+      src: "{{ role_path }}/files/50unattended-upgrades"
+      dest: /etc/apt/apt.conf.d/50unattended-upgrades
+      owner: root
+      group: root
+      mode: '0644'
+      backup: yes
+  
+  - name: Enable Auto Updates
+    ansible.builtin.command: echo unattended-upgrades unattended-upgrades/enable_auto_updates boolean true | debconf-set-selections
+
+  - name: Enable Unattended-Upgrades
+    ansible.builtin.command: dpkg-reconfigure -f noninteractive unattended-upgrades
