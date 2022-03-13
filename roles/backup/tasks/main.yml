@@ -23,7 +23,7 @@
       delete: yes
     tags: backup
 
-  - include_tasks: backup_vaultwarden.yml
+  - import_tasks: backup_vaultwarden.yml
     tags: backup
 
     
