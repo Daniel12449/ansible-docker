@@ -1,16 +1,12 @@
 ---
-- hosts: docker
-  become: true
-
-  tasks:
-      - include_tasks: install_docker.yml
-        tags:
-          - setup
-          - restore
-      - include_tasks: install_ufw.yml
-        tags:
-          - setup
-          - restore
-      - include_tasks: push_volumes.yml
-        tags:
-          - restore
+  - include_tasks: install_docker.yml
+    tags:
+      - setup
+      - restore
+  - include_tasks: install_ufw.yml
+    tags:
+      - setup
+      - restore
+  - include_tasks: push_volumes.yml
+    tags:
+      - restore
