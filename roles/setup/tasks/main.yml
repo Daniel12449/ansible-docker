@@ -1,12 +1,12 @@
 ---
-  - include_tasks: install_docker.yml
+  - import_tasks: "{{ role_path }}/tasks/install_docker.yml"
     tags:
       - setup
       - restore
-  - include_tasks: install_ufw.yml
+  - import_tasks: "{{ role_path }}/tasks/install_ufw.yml"
     tags:
       - setup
       - restore
-  - include_tasks: push_volumes.yml
+  - import_tasks: "{{ role_path }}/tasks/push_volumes.yml"
     tags:
       - restore
