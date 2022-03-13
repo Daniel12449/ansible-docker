@@ -23,7 +23,7 @@
       delete: yes
     tags: backup
 
-  - import_tasks: backup_vaultwarden.yml
+  - import_tasks: "{{ role_path }}/tasks/backup_vaultwarden.yml"
     tags: backup
 
     
