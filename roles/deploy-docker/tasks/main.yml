@@ -1,21 +1,21 @@
 ---
-  - include_tasks: adguard.yml
+  - import_tasks: "{{ role_path }}/tasks/adguard.yml"
     tags:
       - setup
       - restore
-  - include_tasks: nginx_proxy_manager.yml
+  - import_tasks: "{{ role_path }}/tasks/nginx_proxy_manager.yml"
     tags:
       - setup
       - restore
-  - include_tasks: portainer.yml
+  - import_tasks: "{{ role_path }}/tasks/portainer.yml"
     tags:
       - setup
       - restore
-  - include_tasks: teamspeak.yml
+  - import_tasks: "{{ role_path }}/tasks/teamspeak.yml"
     tags:
       - setup
       - restore
-  - include_tasks: vaultwarden.yml
+  - import_tasks: "{{ role_path }}/tasks/vaultwarden.yml"
     tags:
       - setup
       - restore
