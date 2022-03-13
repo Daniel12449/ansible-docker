@@ -3,7 +3,7 @@
     apt:
       name: rsync
       state: present
-    tags: backup
+    tags: [ never, backup ]
 
   - name: Synchronize Docker Volumes
     ansible.posix.synchronize:
@@ -13,7 +13,7 @@
       rsync_opts:
         - "--exclude=backingFsBlockDev"
       delete: yes
-    tags: backup
+    tags: [ never, backup ]
 
   - name: Synchronize Docker Configs in /opt/
     ansible.posix.synchronize:
@@ -21,9 +21,9 @@
       src: /opt/docker_cfg
       dest: "{{ backup_path }}"
       delete: yes
-    tags: backup
+    tags: [ never, backup ]
 
   - import_tasks: "{{ role_path }}/tasks/backup_vaultwarden.yml"
-    tags: backup
+    tags: [ never, backup ]
 
     
