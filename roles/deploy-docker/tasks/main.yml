@@ -24,3 +24,8 @@
       - never
       - setup
       - restore
+  - import_tasks: "{{ role_path }}/tasks/watchtower.yml"
+    tags:
+      - never
+      - setup
+      - restore
