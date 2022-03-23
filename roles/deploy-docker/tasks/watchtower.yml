@@ -1,5 +1,6 @@
 ---
   - name: Deploy Watchtower
+    become_user: dockeruser
     community.docker.docker_container:
       name: watchtower
       image: containrrr/watchtower
