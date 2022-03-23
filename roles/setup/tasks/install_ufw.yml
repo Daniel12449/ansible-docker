@@ -8,7 +8,7 @@
     community.general.ufw:
       rule: allow
       name: OpenSSH
-      src: "{{ ansible_controller_ip }}"
+      src: '10.0.0.0/8'
 
   - name: Enable UFW and Deny Default
     community.general.ufw:
