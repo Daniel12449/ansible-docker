@@ -20,10 +20,10 @@
     dest: /opt/docker_cfg/monitoring
 
 - name: Add the sinunsbot User
-      ansible.builtin.user:
-        name: sinusbot
-        comment: SinusBot User
-        uid: 1010
+  ansible.builtin.user:
+    name: sinusbot
+    comment: SinusBot User
+    uid: 1010
 
 - name: Copy Docker Compose files
   become_user: dockeruser
