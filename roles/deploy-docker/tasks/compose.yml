@@ -9,16 +9,26 @@
 - name: Copy Docker Compose files
   become_user: dockeruser
   copy:
-    src: "{{ role_path }}/files/{{ item }}"
-    dest: /opt/docker_cfg/compose
-  loop:
-  - monitoring-compose.yml
-  - teamspeak-compose.yml
+    src: "{{ role_path }}/files/monitoring-compose.yml"
+    dest: /opt/docker_cfg/monitoring
 
-- name: Deploy Docker Compose stack
+- name: Copy Docker Compose files
+  become_user: dockeruser
+  copy:
+    src: "{{ role_path }}/files/teamspeak-compose.yml"
+    dest: /opt/docker_cfg/teamspeak
+
+- name: Deploy Monitoring Docker Compose stack
   become_user: dockeruser
   docker_compose:
-    project_src: /opt/docker_cfg/compose
+    project_src: /opt/docker_cfg/monitoring
     files:
     - monitoring-compose.yml
+    - teamspeak-compose.yml
+
+- name: Deploy Teamspeak Docker Compose stack
+  become_user: dockeruser
+  docker_compose:
+    project_src: /opt/docker_cfg/teamspeak
+    files:
     - teamspeak-compose.yml
