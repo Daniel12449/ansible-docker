@@ -23,6 +23,9 @@ services:
     volumes:
       - sinusbot_scripts:/opt/sinusbot/scripts
       - sinusbot_data:/opt/sinusbot/data
+    environment:
+    UID: 1010
+    GID: 1010
 
 volumes:
   sinusbot_scripts:
