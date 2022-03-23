@@ -31,7 +31,6 @@
     project_src: /opt/docker_cfg/monitoring
     files:
     - monitoring-compose.yml
-    - teamspeak-compose.yml
 
 - name: Deploy Teamspeak Docker Compose stack
   become_user: dockeruser
