@@ -37,4 +37,5 @@ volumes:
 
 networks:
   teamspeak:
+  docker_bridge:
   
