@@ -41,6 +41,7 @@
         groups:
         - docker
         - sudo
+        shell: /bin/bash
 
     - name: Install Docker Module for Python
       become_user: dockeruser
