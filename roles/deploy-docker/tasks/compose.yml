@@ -3,8 +3,11 @@
   ansible.builtin.file:
     path: /opt/docker_cfg/compose
     state: directory
+    owner: dockeruser
+    group: dockeruser
 
 - name: Copy Docker Compose files
+  become_user: dockeruser
   copy:
     src: files/{{ item }}
     dest: /opt/docker_cfg/compose
@@ -13,6 +16,7 @@
   - teamspeak-compose.yml
 
 - name: Deploy Docker Compose stack
+  become_user: dockeruser
   docker_compose:
     project_src: /opt/docker_cfg/compose
     files:
