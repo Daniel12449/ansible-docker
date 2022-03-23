@@ -1,7 +1,7 @@
 version: '3.1'
 services:
   teamspeak:
-    name: teamspeak
+    container_name: teamspeak
     image: teamspeak
     restart: unless-stopped
     ports:
@@ -17,7 +17,7 @@ services:
       - teamspeak
 
   sinusbot:
-    name: sinusbot
+    container_name: sinusbot
     image: sinusbot/docker
     restart: unless-stopped
 #    ports:
