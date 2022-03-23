@@ -13,21 +13,16 @@ services:
     volumes:
       - /opt/docker_cfg/ts3_licensekey.dat:/var/ts3server/licensekey.dat
       - server:/var/ts3server/
-    networks:
-      - teamspeak
 
   sinusbot:
     container_name: sinusbot
     image: sinusbot/docker
     restart: unless-stopped
-#    ports:
-#      - 8087:8087
+    ports:
+      - 127:0.0.1:8087:8087
     volumes:
       - sinusbot_scripts:/opt/sinusbot/scripts
       - sinusbot_data:/data:/opt/sinusbot/data
-    networks:
-      - teamspeak
-      - docker_bridge
 
 
 volumes:
@@ -35,7 +30,4 @@ volumes:
   sinusbot_data:
   server:
 
-networks:
-  teamspeak:
-  docker_bridge:
   
