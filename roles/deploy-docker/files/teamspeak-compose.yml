@@ -22,8 +22,7 @@ services:
       - 127:0.0.1:8087:8087
     volumes:
       - sinusbot_scripts:/opt/sinusbot/scripts
-      - sinusbot_data:/data:/opt/sinusbot/data
-
+      - sinusbot_data:/opt/sinusbot/data
 
 volumes:
   sinusbot_scripts:
