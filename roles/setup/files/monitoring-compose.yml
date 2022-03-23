@@ -1,0 +1,49 @@
+version: '3'
+
+services:
+  prometheus:
+    container_name: prometheus
+    image: prom/prometheus:latest
+    restart: unless-stopped
+#    ports:
+#      - 9090:9090
+    volumes:
+      - /opt/prometheus:/etc/prometheus
+      - prometheus-data:/prometheus
+    command: --web.enable-lifecycle  --config.file=/etc/prometheus/prometheus.yml
+    depends_on:
+      - prometheus-pve-exporter
+
+  prometheus-pve-exporter:
+    container_name: pve-exporter
+    restart: unless-stopped
+#    ports:
+#      - '9221:9221'
+    volumes:
+      - /opt/prometheus/pve.yml:/etc/pve.yml
+    image: prompve/prometheus-pve-exporter
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    restart: unless-stopped
+    volumes:
+      - grafana:/var/lib/grafana
+#    ports:
+#      - 3000:3000
+    networks:
+      - docker_bridge
+
+  telegraf:
+    image: telegraf
+    container_name: telegraf
+    restart: unless-stopped
+    user: 1001:998 
+    volumes:
+      - telegraf:/etc/telegraf
+      - /var/run/docker.sock:/var/run/docker.sock
+
+volumes:
+  prometheus-data:
+  grafana:
+  telegraf:

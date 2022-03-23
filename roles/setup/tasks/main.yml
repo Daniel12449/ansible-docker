@@ -3,12 +3,10 @@
     tags:
       - never
       - setup
-      - restore
   - import_tasks: "{{ role_path }}/tasks/install_ufw.yml"
     tags:
       - never
       - setup
-      - restore
   - import_tasks: "{{ role_path }}/tasks/push_volumes.yml"
     tags:
       - never
@@ -17,4 +15,3 @@
     tags:
       - never
       - setup
-      - restore

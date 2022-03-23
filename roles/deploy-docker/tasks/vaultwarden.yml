@@ -13,4 +13,6 @@
           SIGNUPS_ALLOWED: "false"
           LOG_FILE: "/data/vaultwarden.log"
           LOG_LEVEL: "error"
+        networks:
+          - name: docker_bridge
         restart_policy: unless-stopped

@@ -1,0 +1,34 @@
+---
+    - name: Create the Default Docker Bridge
+      become_user: dockeruser
+      community.docker.docker_network:
+        name: docker_bridge
+
+    - name: Deploy SWAG
+      become_user: dockeruser
+      community.docker.docker_container:
+        name: swag
+        image: lscr.io/linuxserver/swag:latest
+        ports:
+          - "80:80"
+          - "443:443"
+          - "8448:8448"
+        volumes:
+          - letsencrypt:/letsencrypt:ro
+          - swag:/config
+        networks:
+          - name: docker_bridge
+        env:
+          PUID: "1000"
+          PGID: "1000"
+          TZ: "Europe/London"
+          URL: "dnls.eu"
+          VALIDATION: "dns"
+          SUBDOMAINS: "wildcard"
+          EMAIL: "daniel_schauer@live.de"
+          ONLY_SUBDOMAINS: "false"
+          STAGING: "false"
+          DOCKER_MODS: "linuxserver/mods:swag-dashboard||linuxserver/mods:swag-maxmind"
+          DNSPLUGIN: "cloudflare"
+          MAXMINDDB_LICENSE_KEY: "FAXGButLadEaTYMo"
+        restart_policy: unless-stopped

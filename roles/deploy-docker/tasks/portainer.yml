@@ -10,4 +10,6 @@
         volumes:
           - /var/run/docker.sock:/var/run/docker.sock
           - portainer_data:/data
+        networks:
+          - name: docker_bridge
         restart_policy: unless-stopped

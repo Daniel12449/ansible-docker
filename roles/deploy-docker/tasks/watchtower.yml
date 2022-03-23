@@ -3,12 +3,11 @@
     community.docker.docker_container:
       name: watchtower
       image: containrrr/watchtower
-      command: --schedule "0 0 4 * * *" --debug
       env:
         WATCHTOWER_SCHEDULE: "0 0 6 * * *"
         TZ: "Europe/Berlin"
         CLEANUP: "true"
-        WATCHTOWER_INCLUDE_RESTARTING: true
+        WATCHTOWER_INCLUDE_RESTARTING: "true"
       volumes:
         - /var/run/docker.sock:/var/run/docker.sock
       restart_policy: always

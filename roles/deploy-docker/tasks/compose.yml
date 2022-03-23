@@ -1,0 +1,20 @@
+---
+- name: Create Compose Directory
+  ansible.builtin.file:
+    path: /opt/docker_cfg/compose
+    state: directory
+
+- name: Copy Docker Compose files
+  copy:
+    src: files/{{ item }}
+    dest: /opt/docker_cfg/compose
+  loop:
+  - monitoring-compose.yml
+  - teamspeak-compose.yml
+
+- name: Deploy Docker Compose stack
+  docker_compose:
+    project_src: /opt/docker_cfg/compose
+    files:
+    - monitoring-compose.yml
+    - teamspeak-compose.yml
