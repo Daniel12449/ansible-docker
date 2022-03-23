@@ -43,6 +43,12 @@
         - sudo
         shell: /bin/bash
 
+    - name: Set authorized key took from github
+      authorized_key:
+        user: dockeruser
+        state: present
+        key: https://github.com/daniel12449.keys
+
     - name: Install Docker Module for Python
       become_user: dockeruser
       pip:

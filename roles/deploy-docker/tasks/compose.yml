@@ -1,7 +1,14 @@
 ---
 - name: Create Compose Directory
   ansible.builtin.file:
-    path: /opt/docker_cfg/compose
+    path: /opt/docker_cfg/monitoring
+    state: directory
+    owner: dockeruser
+    group: dockeruser
+
+- name: Create Compose Directory
+  ansible.builtin.file:
+    path: /opt/docker_cfg/teamspeak
     state: directory
     owner: dockeruser
     group: dockeruser
