@@ -1,2 +1,5 @@
 backup_path: /root/backup
 cloudflare_api_token: abcdef123456
+lets_encrypt_staging: true
+lets_encrypt_email: daniel_schauer@live.de
+domain_name: *.dnls.eu test.dnls.eu

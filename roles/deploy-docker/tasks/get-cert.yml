@@ -27,4 +27,24 @@
 
  - name: Print Checksum
    ansible.builtin.debug:
-     var: chksm
+     var: chksm.stat.checksum
+     verbosity: 4
+
+ - name: Attempt SSL certificate retrieval
+   become_user: dockeruser
+   shell: >-
+     docker run
+     --rm
+     --name=certbot
+     --v letsencrypt:/etc/letsencrypt
+     --v certbot_secrets:/.secrets
+     certbot/dns-cloudflare
+     certonly
+     --non-interactive
+     {% if lets_encrypt_staging %}--test-cert{% endif %}
+     --dns-cloudflare
+     --dns-cloudflare-credentials /.secrets/cloudflare.ini
+     --agree-tos
+     --email={{ lets_encrypt_email }}
+     -d {{ domain_name }}
+   register: result_certbot
