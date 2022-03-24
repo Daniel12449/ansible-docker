@@ -18,12 +18,12 @@
      group: root
      mode: '0600'
 
- - name: Get Checksum pre Cert Renewal
-   stat:
-     path: /var/lib/docker/volumes/letsencrypt/_data/live
-     checksum_algorithm: sha256
-     get_checksum: yes
-   register: chksm_pre
+ - name: Get Checksums of live Certs pre Renewal
+   find:
+     paths:
+       - /var/lib/docker/volumes/letsencrypt/_data/live
+      get_checksum: true
+    register: pre_certs
 
  - name: Attempt SSL certificate retrieval
    become_user: dockeruser
@@ -43,15 +43,15 @@
      --email={{ lets_encrypt_email }}
      {{ domain_name }}
 
- - name: Get Checksum post Cert Renewal
-   stat:
-     path: /var/lib/docker/volumes/letsencrypt/_data/live
-     checksum_algorithm: sha256
-     get_checksum: yes
-   register: chksm_post
+ - name: Get Checksums of live Certs post Renewal
+   find:
+     paths:
+       - /var/lib/docker/volumes/letsencrypt/_data/live
+      get_checksum: true
+    register: post_certs
 
  - name: Restart SWAG
    become_user: dockeruser
    shell: docker restart swag
-   when: chksm_pre.stat.checksum != chksm_post.stat.checksum
+   when: pre_certs.checksum != post_certs.checksum
     
