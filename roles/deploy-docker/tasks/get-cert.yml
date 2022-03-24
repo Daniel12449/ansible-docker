@@ -1,5 +1,6 @@
 ---
  - name: Create certbot_secrets Volume if it does not exist
+   become_user: dockeruser
    docker_volume:
      name: certbot_secrets
      state: present
