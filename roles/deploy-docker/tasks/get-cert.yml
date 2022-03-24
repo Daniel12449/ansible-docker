@@ -22,8 +22,8 @@
    find:
      paths:
        - /var/lib/docker/volumes/letsencrypt/_data/live
-      get_checksum: true
-    register: pre_certs
+     get_checksum: true
+   register: pre_certs
 
  - name: Attempt SSL certificate retrieval
    become_user: dockeruser
@@ -47,8 +47,8 @@
    find:
      paths:
        - /var/lib/docker/volumes/letsencrypt/_data/live
-      get_checksum: true
-    register: post_certs
+     get_checksum: true
+   register: post_certs
 
  - name: Restart SWAG
    become_user: dockeruser
