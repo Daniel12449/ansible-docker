@@ -1,6 +1,6 @@
 backup_path: /root/backup
-cloudflare_api_token: 0k0ML_ziii1nsoxGSrE78uXi_WAAMvNMp0q-axCg
+cloudflare_api_token: 123123
 lets_encrypt_staging: true
 lets_encrypt_email: daniel_schauer@live.de
 ## IMPORTANT: Add .-d in front of each domain!
-domain_name: '-d *.dnls.eu -d test.dnls.eu'
+domain_name: '-d *.dnls.eu'
