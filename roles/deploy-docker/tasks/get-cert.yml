@@ -4,15 +4,15 @@
      name: certbot_secrets
      state: present
 
-  - name: Creating Cloudflare Credentials File
-    copy:
-      dest: "/var/lib/docker/volumes/certbot_secrets/_data/cloudflare.ini"
-      content: |
-        dns_cloudflare_api_token = "{{cloudflare_api_token}}"
+ - name: Creating Cloudflare Credentials File
+   copy:
+     dest: "/var/lib/docker/volumes/certbot_secrets/_data/cloudflare.ini"
+     content: |
+       dns_cloudflare_api_token = "{{cloudflare_api_token}}"
 
-   - name: Set Permissions for the Credentials File
-     ansible.builtin.file:
-       path: /var/lib/docker/volumes/certbot_secrets/_data/cloudflare.ini
-       owner: root
-       group: root
-       mode: '0600'
+ - name: Set Permissions for the Credentials File
+   ansible.builtin.file:
+     path: /var/lib/docker/volumes/certbot_secrets/_data/cloudflare.ini
+     owner: root
+     group: root
+     mode: '0600'
