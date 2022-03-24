@@ -36,8 +36,8 @@
      docker run
      --rm
      --name=certbot
-     --v letsencrypt:/etc/letsencrypt
-     --v certbot_secrets:/.secrets
+     -v letsencrypt:/etc/letsencrypt
+     -v certbot_secrets:/.secrets
      certbot/dns-cloudflare
      certonly
      --non-interactive
