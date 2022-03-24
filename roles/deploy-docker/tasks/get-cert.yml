@@ -27,4 +27,4 @@
 
  - name: Print Checksum
    ansible.builtin.debug:
-     var chksm
+     var: chksm
