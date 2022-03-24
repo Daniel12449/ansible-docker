@@ -22,5 +22,6 @@
   - import_tasks: "{{ role_path }}/tasks/get-cert.yml"
     tags:
       - never
-      - test-cert
+      - renew-cert
+      - setup
 
