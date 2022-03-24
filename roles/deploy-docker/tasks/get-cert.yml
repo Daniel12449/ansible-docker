@@ -53,5 +53,5 @@
  - name: Restart SWAG
    become_user: dockeruser
    shell: docker restart swag
-   when: pre_certs.checksum != post_certs.checksum
+   when: pre_certs.stat.checksum != post_certs.stat.checksum
     
