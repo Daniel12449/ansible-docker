@@ -19,7 +19,7 @@
     tags:
       - never
       - setup
-  - import_tasks: "{{ role_path }}/tasks/get-cert"
+  - import_tasks: "{{ role_path }}/tasks/get-cert.yml"
     tags:
       - never
       - test-cert
