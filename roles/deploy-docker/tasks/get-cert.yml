@@ -46,5 +46,5 @@
      --dns-cloudflare-credentials /.secrets/cloudflare.ini
      --agree-tos
      --email={{ lets_encrypt_email }}
-     -d {{ domain_name }}
+     {{ domain_name }}
    register: result_certbot

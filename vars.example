@@ -1,0 +1,6 @@
+backup_path: /root/backup
+cloudflare_api_token: abcdefgh12345678
+lets_encrypt_staging: true
+lets_encrypt_email: mail@example.com
+## IMPORTANT: Add .-d in front of each domain!
+domain_name: '-d *.example.com -d two.example.com'
