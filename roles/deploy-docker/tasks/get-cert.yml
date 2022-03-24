@@ -9,7 +9,7 @@
    copy:
      dest: "/var/lib/docker/volumes/certbot_secrets/_data/cloudflare.ini"
      content: |
-       dns_cloudflare_api_token = "{{cloudflare_api_token}}"
+       dns_cloudflare_api_token = {{cloudflare_api_token}}
 
  - name: Set Permissions for the Credentials File
    ansible.builtin.file:
@@ -17,3 +17,14 @@
      owner: root
      group: root
      mode: '0600'
+
+ - name: Get Checksum pre Cert Renewal
+   stat:
+     path: /var/lib/docker/volumes/letsencrypt/_data/live
+     checksum_algorithm: sha1sum
+     get_checksum: yes
+   register: chksm
+
+ - name: Print Checksum
+   ansible.builtin.debug:
+     var chksm
