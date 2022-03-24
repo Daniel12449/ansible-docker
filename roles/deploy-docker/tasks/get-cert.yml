@@ -42,8 +42,7 @@
      --agree-tos
      --email={{ lets_encrypt_email }}
      {{ domain_name }}
-   register: result_certbot
-
+     
 - name: Get Checksum post Cert Renewal
   stat:
     path: /var/lib/docker/volumes/letsencrypt/_data/live
